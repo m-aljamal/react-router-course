@@ -1,9 +1,19 @@
-import React from 'react'
-
+import React from "react";
+import Sidebar from "./Sidebar";
+import { Outlet } from "react-router-dom";
+import useTeamNames from "../hooks/useTeamNames";
 const Teams = () => {
-  return (
-    <div className='container'>Teams</div>
-  )
-}
+  const { response: teamNames, loading: loadingTeamNames } = useTeamNames();
 
-export default Teams
+  if (loadingTeamNames) {
+    return <div>Loading...</div>;
+  }
+  return (
+    <div className="container two-column">
+      <Sidebar title="Teams" list={teamNames} />
+      <Outlet />
+    </div>
+  );
+};
+
+export default Teams;
