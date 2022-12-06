@@ -1,13 +1,14 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import useTeam from "../hooks/useTeam";
+import Loading from "./Loading";
 import TeamLogo from "./TeamLogo";
 const Team = () => {
   const { teamId } = useParams();
   const { response: team, loading } = useTeam(teamId);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
